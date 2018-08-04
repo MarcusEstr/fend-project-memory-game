@@ -78,20 +78,12 @@ allCards.forEach(function(card) {
 
        //two cards:
       if (openCards.length == 2) {
-        //if two cards match:
-        if (openCards[0].dataset.card == openCards[1].dataset.card) {
-          openCards[0].classList.add('match');
-          openCards[0].classList.add('open');
-          openCards[0].classList.add('show');
-          openCards[1].classList.add('match');
-          openCards[1].classList.add('open');
-          openCards[1].classList.add('show');
-          openCards = [];
-        }
+        //if two selected cards match:
+        match();
         
-
-        //If cards don't match:
+        //If two selected cards don't match:
 		noMatch();
+
       }
       moves += 1;
       moveCounter.innerText = moves;
@@ -100,6 +92,22 @@ allCards.forEach(function(card) {
   });
 
 });
+
+
+/*When cards match, add the open, show, and match clases to them.
+Empty openCards array.*/
+function match() {
+	if (openCards[0].dataset.card == openCards[1].dataset.card) {
+      openCards[0].classList.add('match');
+      openCards[0].classList.add('open');
+      openCards[0].classList.add('show');
+      openCards[1].classList.add('match');
+      openCards[1].classList.add('open');
+      openCards[1].classList.add('show');
+      openCards = [];
+    }
+}
+
 
 
 /*When cards don't match, when timer reaches 800ms,
