@@ -85,10 +85,8 @@ allCards.forEach(function(card) {
     	openCards.length <= 1) {
 
 		openCards.push(card); //push current card into array
-
 		//Open the clicked card by applying classes:
 		openSelectedCard(card);
-
 		//Check if you have two open cards. If so, see if they match or not:
 		checkOpenCards();
 
@@ -119,11 +117,7 @@ Empty openCards array.*/
 function match() {
 	if (openCards[0].dataset.card == openCards[1].dataset.card) {
       openCards[0].classList.add('match');
-      openCards[0].classList.add('open');
-      openCards[0].classList.add('show');
       openCards[1].classList.add('match');
-      openCards[1].classList.add('open');
-      openCards[1].classList.add('show');
       openCards = []; //clear array
     }
 }
