@@ -15,8 +15,6 @@ const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt',
 			'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 
 			'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
 
-
-
 /* Shuffle function from http://stackoverflow.com/a/2450976
 Takes cards array and shuffles up their order.*/
 function shuffle(array) {
@@ -34,8 +32,8 @@ function shuffle(array) {
 }
 
 
-
 document.body.onload = initializeGame();
+
 /*Function to start the game up upon page load, or upon restart button click event.
 deck: The deck div which will hold all programatically generated cards.
 cardHTML: Uses shuffle function on cards array. Then creates a new array using map.
@@ -47,13 +45,12 @@ function initializeGame() {
 	});
 	//Start/reset moves to 0.
 	moves = 0;
+	moveCounter.innerText = moves;
 	//Newly shuffled/created string of cardHTML passed to deck div for displaying.
 	deck.innerHTML = cardHTML.join('');
 	allCards = document.querySelectorAll('.card');
 	addListenersToCards();
 }
-
-
 
 
 //HTML string with card classes passed in. Creates 16 cards.
