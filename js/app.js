@@ -81,18 +81,8 @@ allCards.forEach(function(card) {
       //When click event occurs on card, add Open,Show classes.
       card.classList.add('open', 'show');
 
-       //two cards:
-      if (openCards.length == 2) {
-        //if two selected cards match:
-        match();
-        
-        //If two selected cards don't match:
-		noMatch();
-
-		moves += 1;
-      	moveCounter.innerText = moves;
-
-      }
+       //Check if you have two open cards. If so, see if they match or not:
+       checkOpenCards();
       
     }
     
@@ -100,6 +90,18 @@ allCards.forEach(function(card) {
 
 });
 
+
+function checkOpenCards() {
+  if (openCards.length == 2) {
+    //if two selected cards match:
+    match();
+    //If two selected cards don't match:
+	noMatch();
+	//Increment moves
+	moves += 1;
+  	moveCounter.innerText = moves;
+  }
+}
 
 /*When cards match, add the open, show, and match clases to them.
 Empty openCards array.*/
@@ -111,7 +113,7 @@ function match() {
       openCards[1].classList.add('match');
       openCards[1].classList.add('open');
       openCards[1].classList.add('show');
-      openCards = [];
+      openCards = []; //clear array
     }
 }
 
