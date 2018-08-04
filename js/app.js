@@ -76,7 +76,14 @@ allCards.forEach(function(card) {
   //...add a click event listener!
   card.addEventListener('click', function(event) {
     
-    if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
+    /*Check card for suitability of being clicked. 
+    Cannot open an already open or matched card, 
+    or when there are already two cards open.*/
+    if (!card.classList.contains('open') && 
+    	!card.classList.contains('show') && 
+    	!card.classList.contains('match') &&
+    	openCards.length <= 1) {
+
       openCards.push(card); //push current card into array
       //When click event occurs on card, add Open,Show classes.
       card.classList.add('open', 'show');
