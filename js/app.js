@@ -84,19 +84,23 @@ allCards.forEach(function(card) {
     	!card.classList.contains('match') &&
     	openCards.length <= 1) {
 
-      openCards.push(card); //push current card into array
-      //When click event occurs on card, add Open,Show classes.
-      card.classList.add('open', 'show');
+		openCards.push(card); //push current card into array
 
-       //Check if you have two open cards. If so, see if they match or not:
-       checkOpenCards();
-      
+		//Open the clicked card by applying classes:
+		openSelectedCard(card);
+
+		//Check if you have two open cards. If so, see if they match or not:
+		checkOpenCards();
+
     }
     
   });
 
 });
 
+function openSelectedCard(card) {
+	card.classList.add('open', 'show');
+}
 
 function checkOpenCards() {
   if (openCards.length == 2) {
@@ -123,7 +127,6 @@ function match() {
       openCards = []; //clear array
     }
 }
-
 
 /*When cards don't match, when timer reaches 800ms,
 remove open/show classes and empty openCards array.*/
