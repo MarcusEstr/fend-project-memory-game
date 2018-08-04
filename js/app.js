@@ -2,18 +2,20 @@
 allCards array: Holds all .card elements generated on page.
 openCards array: holds currently open card(s).
 moves integer: An incrementing count of moves the player makes.
-moveCounter: Variable for .moves element on page.*/
+moveCounter: Variable for .moves element on page.
+matchCount: Tracks count of matched cards, up to 16 for win condition.*/
 let allCards = document.querySelectorAll('.card');
 let openCards = [];
-var moves = 0;
+let moves = 0;
 const moveCounter = document.querySelector('.moves');
+let matchCount = 0;
 
 /*Cards array: Holds all the card element classes,
 which are used as variables when programatically generating card deck HTML.*/
 const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 
 			'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb',
-			'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 
-			'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
+			'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 
+			'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
 
 /* Shuffle function from http://stackoverflow.com/a/2450976
 Takes cards array and shuffles up their order.*/
@@ -46,6 +48,7 @@ function initializeGame() {
 	//Start/reset moves to 0.
 	moves = 0;
 	moveCounter.innerText = moves;
+	matchCount = 0;
 	//Newly shuffled/created string of cardHTML passed to deck div for displaying.
 	deck.innerHTML = cardHTML.join('');
 	allCards = document.querySelectorAll('.card');
@@ -97,8 +100,10 @@ function checkOpenCards() {
 	match();
 	//If two selected cards don't match:
 	noMatch();
-	//Increment moves
+	//Increment moves:
 	incrementMove();
+	//Check if all cards are matched:
+	checkWinner();
   }
 }
 
@@ -108,6 +113,7 @@ function match() {
 	if (openCards[0].dataset.card == openCards[1].dataset.card) {
 		openCards[0].classList.add('match');
 		openCards[1].classList.add('match');
+		matchCount += 2;
 		openCards = []; //clear array
 	}
 }
@@ -126,6 +132,12 @@ function noMatch() {
 function incrementMove() {
 	moves += 1;
 	moveCounter.innerText = moves;
+}
+
+function checkWinner() {
+	if (matchCount === 16) {
+		console.log("Winner!");
+	}
 }
 
 /*Git uploads:
