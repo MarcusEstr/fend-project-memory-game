@@ -75,26 +75,25 @@ const moveCounter = document.querySelector('.moves');
 allCards.forEach(function(card) {
   //...add a click event listener!
   card.addEventListener('click', function(event) {
-    
     /*Check card for suitability of being clicked. 
     Cannot open an already open or matched card, 
     or when there are already two cards open.*/
-    if (!card.classList.contains('open') && 
-    	!card.classList.contains('show') && 
-    	!card.classList.contains('match') &&
-    	openCards.length <= 1) {
-
-		openCards.push(card); //push current card into array
-		//Open the clicked card by applying classes:
-		openSelectedCard(card);
-		//Check if you have two open cards. If so, see if they match or not:
-		checkOpenCards();
-
-    }
-    
+    checkClickedCard(card);
   });
 
 });
+
+function checkClickedCard(card) {
+    if (!card.classList.contains('open') && !card.classList.contains('show') && 
+	!card.classList.contains('match') && openCards.length <= 1) {
+
+	openCards.push(card); //push current card into array
+	//Open the clicked card by applying classes:
+	openSelectedCard(card);
+	//Check if you have two open cards. If so, see if they match or not:
+	checkOpenCards();
+    }
+}
 
 function openSelectedCard(card) {
 	card.classList.add('open', 'show');
