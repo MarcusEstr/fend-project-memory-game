@@ -1,26 +1,24 @@
 /*CSS Styles: 
-Open, SHow - blue open
-Match - matched card
- * Create a list that holds all of your cards
- */
-var cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb',
-            'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
+Open, SHow - blue, large font
+Match - matched card turns green
 
+/*Cards array: Holds all the card element classes,
+which are used as variables when programatically generating card deck HTML.*/
+const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 
+			'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb',
+            'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 
+            'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
+
+//HTML string with card classes passed in. Creates 16 cards.
 function generateCard(card) {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;  
 }
 
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-// Shuffle function from http://stackoverflow.com/a/2450976
+/* Shuffle function from http://stackoverflow.com/a/2450976
+Takes cards array and shuffles up their order.*/
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -45,14 +43,18 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-//Function to start the game up or restart it.
+/*Function to start the game up upon page load, or upon restart button click event.
+deck: The deck div which will hold all programatically generated cards.
+cardHTML: Uses shuffle function on cards array. Then creates a new array using map.
+This newly shuffled array is then sent to generateCard function.*/
 function initializeGame() {
-  var deck = document.querySelector('.deck');
-  var cardHTML = shuffle(cards).map(function(card) {
+  const deck = document.querySelector('.deck');
+  let cardHTML = shuffle(cards).map(function(card) {
     return generateCard(card);
   });
-  //set up move counter
+  //Start/reset moves to 0.
   moves = 0;
+  //Newly shuffled/created string of cardHTML passed to deck div for displaying.
   deck.innerHTML = cardHTML.join('');
 }
 
@@ -63,10 +65,10 @@ allCards array: Holds all .card elements generated on page.
 openCards array: holds currently open card(s).
 moves integer: An incrementing count of moves the player makes.
 moveCounter: Variable for .moves element on page.*/
-var allCards = document.querySelectorAll('.card');
-var openCards = [];
+const allCards = document.querySelectorAll('.card');
+let openCards = [];
 var moves = 0;
-var moveCounter = document.querySelector('.moves');
+const moveCounter = document.querySelector('.moves');
 
 
 //for each card in allCards array...
