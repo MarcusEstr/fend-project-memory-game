@@ -58,8 +58,11 @@ function initializeGame() {
 
 initializeGame();
 
-//Global variables:
-//Select all card elements and put them into an array - allCards.
+/*Global variables:
+allCards array: Holds all .card elements generated on page.
+openCards array: holds currently open card(s).
+moves integer: An incrementing count of moves the player makes.
+moveCounter: Variable for .moves element on page.*/
 var allCards = document.querySelectorAll('.card');
 var openCards = [];
 var moves = 0;
@@ -84,9 +87,11 @@ allCards.forEach(function(card) {
         //If two selected cards don't match:
 		noMatch();
 
+		moves += 1;
+      	moveCounter.innerText = moves;
+
       }
-      moves += 1;
-      moveCounter.innerText = moves;
+      
     }
     
   });
@@ -107,7 +112,6 @@ function match() {
       openCards = [];
     }
 }
-
 
 
 /*When cards don't match, when timer reaches 800ms,
