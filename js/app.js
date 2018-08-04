@@ -1,7 +1,3 @@
-/*CSS Styles: 
-Open, SHow - blue, large font
-Match - matched card turns green
-
 /*Cards array: Holds all the card element classes,
 which are used as variables when programatically generating card deck HTML.*/
 const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 
@@ -9,10 +5,6 @@ const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt',
             'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 
             'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
 
-//HTML string with card classes passed in. Creates 16 cards.
-function generateCard(card) {
-  return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;  
-}
 
 
 /* Shuffle function from http://stackoverflow.com/a/2450976
@@ -31,6 +23,8 @@ function shuffle(array) {
     return array;
 }
 
+//allCards array: Holds all .card elements generated on page.
+let allCards = document.querySelectorAll('.card');
 
 document.body.onload = initializeGame();
 /*Function to start the game up upon page load, or upon restart button click event.
@@ -46,26 +40,33 @@ function initializeGame() {
   moves = 0;
   //Newly shuffled/created string of cardHTML passed to deck div for displaying.
   deck.innerHTML = cardHTML.join('');
+  allCards = document.querySelectorAll('.card');
+  addListenersToCards();
 }
 
-//initializeGame();
 
 /*Global variables:
-allCards array: Holds all .card elements generated on page.
 openCards array: holds currently open card(s).
 moves integer: An incrementing count of moves the player makes.
 moveCounter: Variable for .moves element on page.*/
-const allCards = document.querySelectorAll('.card');
+//let allCards = document.querySelectorAll('.card');
 let openCards = [];
 var moves = 0;
 const moveCounter = document.querySelector('.moves');
 
 
-//for each card in allCards array...
-allCards.forEach(function(card) {
-  //...listen for Click events on cards!
-	clickEventListener(card);
-});
+//HTML string with card classes passed in. Creates 16 cards.
+function generateCard(card) {
+  return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;  
+}
+
+function addListenersToCards(){
+	//for each card in allCards array...
+	allCards.forEach(function(card) {
+	  //...listen for Click events on cards!
+		clickEventListener(card);
+	});
+}
 
 
 function clickEventListener(card) {
