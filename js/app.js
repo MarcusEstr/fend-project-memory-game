@@ -1,30 +1,39 @@
+/*Global variables:
+allCards array: Holds all .card elements generated on page.
+openCards array: holds currently open card(s).
+moves integer: An incrementing count of moves the player makes.
+moveCounter: Variable for .moves element on page.*/
+let allCards = document.querySelectorAll('.card');
+let openCards = [];
+var moves = 0;
+const moveCounter = document.querySelector('.moves');
+
 /*Cards array: Holds all the card element classes,
 which are used as variables when programatically generating card deck HTML.*/
 const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 
 			'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb',
-            'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 
-            'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
+			'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 
+			'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
 
 
 
 /* Shuffle function from http://stackoverflow.com/a/2450976
 Takes cards array and shuffles up their order.*/
 function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
+	let currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+	while (currentIndex !== 0) {
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
 
-    return array;
+	return array;
 }
 
-//allCards array: Holds all .card elements generated on page.
-let allCards = document.querySelectorAll('.card');
+
 
 document.body.onload = initializeGame();
 /*Function to start the game up upon page load, or upon restart button click event.
@@ -32,32 +41,24 @@ deck: The deck div which will hold all programatically generated cards.
 cardHTML: Uses shuffle function on cards array. Then creates a new array using map.
 This newly shuffled array is then sent to generateCard function.*/
 function initializeGame() {
-  const deck = document.querySelector('.deck');
-  let cardHTML = shuffle(cards).map(function(card) {
-    return generateCard(card);
-  });
-  //Start/reset moves to 0.
-  moves = 0;
-  //Newly shuffled/created string of cardHTML passed to deck div for displaying.
-  deck.innerHTML = cardHTML.join('');
-  allCards = document.querySelectorAll('.card');
-  addListenersToCards();
+	const deck = document.querySelector('.deck');
+	let cardHTML = shuffle(cards).map(function(card) {
+		return generateCard(card);
+	});
+	//Start/reset moves to 0.
+	moves = 0;
+	//Newly shuffled/created string of cardHTML passed to deck div for displaying.
+	deck.innerHTML = cardHTML.join('');
+	allCards = document.querySelectorAll('.card');
+	addListenersToCards();
 }
 
 
-/*Global variables:
-openCards array: holds currently open card(s).
-moves integer: An incrementing count of moves the player makes.
-moveCounter: Variable for .moves element on page.*/
-//let allCards = document.querySelectorAll('.card');
-let openCards = [];
-var moves = 0;
-const moveCounter = document.querySelector('.moves');
 
 
 //HTML string with card classes passed in. Creates 16 cards.
 function generateCard(card) {
-  return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;  
+	return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;  
 }
 
 function addListenersToCards(){
@@ -78,7 +79,7 @@ function clickEventListener(card) {
 }
 
 function checkClickedCard(card) {
-    if (!card.classList.contains('open') && !card.classList.contains('show') && 
+	if (!card.classList.contains('open') && !card.classList.contains('show') && 
 	!card.classList.contains('match') && openCards.length <= 1) {
 
 	openCards.push(card); //push current card into array
@@ -86,7 +87,7 @@ function checkClickedCard(card) {
 	openSelectedCard(card);
 	//Check if you have two open cards. If so, see if they match or not:
 	checkOpenCards();
-    }
+	}
 }
 
 function openSelectedCard(card) {
@@ -95,9 +96,9 @@ function openSelectedCard(card) {
 
 function checkOpenCards() {
   if (openCards.length == 2) {
-    //if two selected cards match:
-    match();
-    //If two selected cards don't match:
+	//if two selected cards match:
+	match();
+	//If two selected cards don't match:
 	noMatch();
 	//Increment moves
 	incrementMove();
@@ -108,26 +109,26 @@ function checkOpenCards() {
 Empty openCards array.*/
 function match() {
 	if (openCards[0].dataset.card == openCards[1].dataset.card) {
-      openCards[0].classList.add('match');
-      openCards[1].classList.add('match');
-      openCards = []; //clear array
-    }
+		openCards[0].classList.add('match');
+		openCards[1].classList.add('match');
+		openCards = []; //clear array
+	}
 }
 
 /*When cards don't match, when timer reaches 800ms,
 remove open/show classes and empty openCards array.*/
 function noMatch() {
-    setTimeout(function() {
-      openCards.forEach(function(card) {
-        card.classList.remove('open', 'show');
-      });
-      openCards = []; //clear array
-    }, 800);
+	setTimeout(function() {
+		openCards.forEach(function(card) {
+		card.classList.remove('open', 'show');
+		});
+		openCards = []; //clear array
+	}, 800);
 }
 
 function incrementMove() {
 	moves += 1;
-  	moveCounter.innerText = moves;
+	moveCounter.innerText = moves;
 }
 
 /*Git uploads:
