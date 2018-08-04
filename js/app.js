@@ -73,15 +73,19 @@ const moveCounter = document.querySelector('.moves');
 
 //for each card in allCards array...
 allCards.forEach(function(card) {
-  //...add a click event listener!
-  card.addEventListener('click', function(event) {
-    /*Check card for suitability of being clicked. 
-    Cannot open an already open or matched card, 
-    or when there are already two cards open.*/
-    checkClickedCard(card);
-  });
+  //...listen for Click events on cards!
+	clickEventListener(card);
 
 });
+
+
+function clickEventListener(card) {
+	card.addEventListener('click', function(event) {
+	/*Check card for suitability of being clicked. Cannot open an already open or matched card, 
+	or when there are already two cards open.*/
+	checkClickedCard(card);
+  });
+}
 
 function checkClickedCard(card) {
     if (!card.classList.contains('open') && !card.classList.contains('show') && 
