@@ -45,6 +45,7 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+//Function to start the game up or restart it.
 function initializeGame() {
   var deck = document.querySelector('.deck');
   var cardHTML = shuffle(cards).map(function(card) {
@@ -57,11 +58,13 @@ function initializeGame() {
 
 initializeGame();
 
+//Global variables:
 //Select all card elements and put them into an array - allCards.
 var allCards = document.querySelectorAll('.card');
 var openCards = [];
 var moves = 0;
 var moveCounter = document.querySelector('.moves');
+
 
 //for each card in allCards array...
 allCards.forEach(function(card) {
@@ -86,18 +89,33 @@ allCards.forEach(function(card) {
           openCards = [];
         }
         
-         //if cards don't match, go away
-        //in 1000 ms, remove the open and show classes of the cards in array
-        setTimeout(function(){
-          openCards.forEach(function(card) {
-            card.classList.remove('open', 'show');
-          });
-          openCards = []; //clear array
-        }, 1000);
+
+        //If cards don't match:
+		noMatch();
       }
       moves += 1;
       moveCounter.innerText = moves;
     }
     
   });
+
 });
+
+
+/*When cards don't match, when timer reaches 800ms,
+remove open/show classes and empty openCards array.*/
+function noMatch() {
+    setTimeout(function() {
+      openCards.forEach(function(card) {
+        card.classList.remove('open', 'show');
+      });
+      openCards = []; //clear array
+    }, 800);
+}
+
+/*Git uploads:
+git status
+git add .
+git status
+git commit -m "Enter text here"
+git push -u origin master*/
