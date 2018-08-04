@@ -32,17 +32,7 @@ function shuffle(array) {
 }
 
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
+document.body.onload = initializeGame();
 /*Function to start the game up upon page load, or upon restart button click event.
 deck: The deck div which will hold all programatically generated cards.
 cardHTML: Uses shuffle function on cards array. Then creates a new array using map.
@@ -58,7 +48,7 @@ function initializeGame() {
   deck.innerHTML = cardHTML.join('');
 }
 
-initializeGame();
+//initializeGame();
 
 /*Global variables:
 allCards array: Holds all .card elements generated on page.
@@ -75,7 +65,6 @@ const moveCounter = document.querySelector('.moves');
 allCards.forEach(function(card) {
   //...listen for Click events on cards!
 	clickEventListener(card);
-
 });
 
 
@@ -110,8 +99,7 @@ function checkOpenCards() {
     //If two selected cards don't match:
 	noMatch();
 	//Increment moves
-	moves += 1;
-  	moveCounter.innerText = moves;
+	incrementMove();
   }
 }
 
@@ -134,6 +122,11 @@ function noMatch() {
       });
       openCards = []; //clear array
     }, 800);
+}
+
+function incrementMove() {
+	moves += 1;
+  	moveCounter.innerText = moves;
 }
 
 /*Git uploads:
