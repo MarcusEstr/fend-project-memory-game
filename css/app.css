@@ -18,7 +18,8 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: 'Abel', sans-serif;
+    font-size: 1.1em;
 }
 
 .container {
@@ -29,8 +30,8 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-family: 'Abel', sans-serif;
+    font-size: 2.3em;
 }
 
 /*
@@ -62,11 +63,12 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    /*box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);*/
 }
 
 .deck .card:hover {
     background-color: #405261;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .deck .card.open {
@@ -77,6 +79,7 @@ h1 {
 
 .deck .card.show {
     font-size: 33px;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .deck .card.match {
@@ -140,6 +143,7 @@ h1 {
     border-radius: 15px;
     width: 60%;
     text-align: center;
+    font-size: 1.5em;
 }
 
 /* The Close Button */
