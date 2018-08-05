@@ -10,18 +10,15 @@ let moves = 0;
 const moveCounter = document.querySelector('.moves');
 let matchCount = 0;
 
-// declare variables for star icons
+// Declare variables for star icons.
 const starIcons = document.querySelectorAll(".fa-star");
 let starCount = 3;
-
+// Declare variables for the timer.
 let timerSeconds = document.getElementById("seconds");
 let timerMinutes = document.getElementById("minutes");
 
-// Get the modal
+// Modal:
 const modal = document.getElementById('winnerModal');
-// Get the button that opens the modal
-const btn = document.getElementById("myBtn");
-// Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
 const playAgain = document.getElementById("playAgain");
 
@@ -192,7 +189,7 @@ function checkWinner() {
 	}
 }
 
-// setInterval basics: http://logicalmoon.com/2015/05/using-javascript-to-create-a-timer/
+// setInterval documentation: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval
 function startTimer() {
     var seconds = 0;
 	timer = setInterval(function() {
@@ -204,27 +201,6 @@ function startTimer() {
 
 function stopTimer() {
     clearInterval(timer);
-}
-/*Git uploads:
-git status
-git add .
-git status
-git commit -m "Enter text here"
-git push -u origin master*/
-
-// // Get the button that opens the modal
-// var btn = document.getElementById("myBtn");
-
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal.
-btn.onclick = function() {
-	stopTimer();
-    modal.style.display = "block";
-    document.getElementById('finalMove').innerHTML = moves;
-    document.getElementById('finalTime').innerHTML = `${timerMinutes.innerText} minutes and ${timerSeconds.innerText} seconds`;
-	document.getElementById('finalStar').innerHTML = starCount;
 }
 
 // When the user clicks on "x", close the modal.
@@ -239,6 +215,7 @@ window.onclick = function(event) {
     }
 }
 
+// Restart game.
 playAgain.onclick = function() {
 	modal.style.display = "none";
 	stopTimer();
