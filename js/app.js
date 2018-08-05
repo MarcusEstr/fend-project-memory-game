@@ -9,7 +9,13 @@ let openCards = [];
 let moves = 0;
 const moveCounter = document.querySelector('.moves');
 let matchCount = 0;
-const modal = document.getElementById('winnerModal');
+
+// Get the modal
+var modal = document.getElementById('winnerModal');
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
 /*Cards array: Holds all the card element classes,
 which are used as variables when programatically generating card deck HTML.*/
@@ -137,8 +143,10 @@ function incrementMove() {
 
 function checkWinner() {
 	if (matchCount === 16) {
-		console.log("Winner!");
 		modal.style.display = "block";
+		document.getElementById('finalMove').innerHTML = moves;
+		document.getElementById('finalTime').innerHTML = moves;
+		document.getElementById('finalStar').innerHTML = moves;
 	}
 }
 
@@ -149,18 +157,21 @@ git status
 git commit -m "Enter text here"
 git push -u origin master*/
 
-// Get the modal
-// var modal = document.getElementById('winnerModal');
+// // Get the modal
+// //var modal = document.getElementById('winnerModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+// // Get the button that opens the modal
+// var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal.
 btn.onclick = function() {
     modal.style.display = "block";
+    document.getElementById('finalMove').innerHTML = moves;
+    document.getElementById('finalTime').innerHTML = moves;
+	document.getElementById('finalStar').innerHTML = moves;
 }
 
 // When the user clicks on "x", close the modal.
