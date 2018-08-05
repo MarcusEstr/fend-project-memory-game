@@ -86,6 +86,8 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    animation: growShrink 0.5s;
+
 }
 
 .deck .card.noMatch {
@@ -97,6 +99,13 @@ h1 {
   0% { transform: translate(10px, 0px) rotate(2deg); }
   40% { transform: translate(-10px, 0px) rotate(-2deg); }
   80% { transform: translate(10px, 0px) rotate(2deg); }
+}
+
+/*Grow and shrink animation for match cards*/
+@keyframes growShrink {
+    from { transform: none; }
+    50% { transform: scale(1.2); }
+    to { transform: none; }
 }
 
 /*
