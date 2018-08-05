@@ -69,6 +69,7 @@ function initializeGame() {
 }
 
 function defaultToZero() {
+	openCards = [];
 	moves = 0;
 	moveCounter.innerText = moves;
 	matchCount = 0;
