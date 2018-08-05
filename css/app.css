@@ -88,6 +88,17 @@ h1 {
     font-size: 33px;
 }
 
+.deck .card.noMatch {
+    animation: shake 0.5s;
+}
+
+/*Shake animation for noMatch cards*/
+@keyframes shake {
+  0% { transform: translate(10px, 0px) rotate(2deg); }
+  40% { transform: translate(-10px, 0px) rotate(-2deg); }
+  80% { transform: translate(10px, 0px) rotate(2deg); }
+}
+
 /*
  * Styles for the Score Panel
  */

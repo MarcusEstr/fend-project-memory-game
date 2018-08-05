@@ -147,12 +147,16 @@ function match() {
 /*When cards don't match, when timer reaches 800ms,
 remove open/show classes and empty openCards array.*/
 function noMatch() {
+	 openCards[0].classList.add('noMatch');
+	 openCards[1].classList.add('noMatch');
 	setTimeout(function() {
 		openCards.forEach(function(card) {
-		card.classList.remove('open', 'show');
+
+		card.classList.remove('open', 'show', 'noMatch');
 		});
 		openCards = []; //clear array
 	}, 700);
+
 }
 
 function incrementMove() {
