@@ -4,7 +4,7 @@
 
 * [Instructions](#instructions)
 * [Playing](#playing)
-* [Resources](#resources-references)
+* [Resources and Dependencies](#resources-dependencies)
 * [Contributing](#contributing)
 
 ## Instructions
@@ -17,7 +17,9 @@ To play the game, simply click on any of the boxes on screen. Your goal is to ma
 
 Once all pairs have been matched - you win! Click "Play Again?" to play again. 
 
-## Resources-References
+## Resources-Dependencies
+
+This project is built using HTML, CSS and JavaScript. No third party JavaScript libraries were used.
 
 This project includes resources from the following:
 1. [Udacity Front End Nanodegree course](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) - This course provided the basic HTML and CSS from which I built off of. 
