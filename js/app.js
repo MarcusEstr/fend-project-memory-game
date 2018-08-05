@@ -12,13 +12,14 @@ let matchCount = 0;
 
 // declare variables for star icons
 const starIcons = document.querySelectorAll(".fa-star");
+let starCount = 3;
 
 // Get the modal
-var modal = document.getElementById('winnerModal');
+const modal = document.getElementById('winnerModal');
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+const btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+const span = document.getElementsByClassName("close")[0];
 
 
 /*Cards array: Holds all the card element classes,
@@ -151,11 +152,14 @@ function incrementMove() {
 function checkStarRating() {
 	if (moves > 21) {
 		starIcons[0].style.display = "none";
+		starCount = 1;
 	} else if (moves > 11) {
 		starIcons[1].style.display = "none";
+		starCount = 2;
 	} else {
 		starIcons[0].style.display = "inline-block";
 		starIcons[1].style.display = "inline-block";
+		starCount = 3;
 	}
 }
 
@@ -164,7 +168,7 @@ function checkWinner() {
 		modal.style.display = "block";
 		document.getElementById('finalMove').innerHTML = moves;
 		document.getElementById('finalTime').innerHTML = moves;
-		document.getElementById('finalStar').innerHTML = moves;
+		document.getElementById('finalStar').innerHTML = starCount;
 	}
 }
 
@@ -189,7 +193,7 @@ btn.onclick = function() {
     modal.style.display = "block";
     document.getElementById('finalMove').innerHTML = moves;
     document.getElementById('finalTime').innerHTML = moves;
-	document.getElementById('finalStar').innerHTML = moves;
+	document.getElementById('finalStar').innerHTML = starCount;
 }
 
 // When the user clicks on "x", close the modal.
