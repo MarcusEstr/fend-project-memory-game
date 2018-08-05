@@ -28,10 +28,10 @@ const playAgain = document.getElementById("playAgain");
 
 /*Cards array: Holds all the card element classes,
 which are used as variables when programatically generating card deck HTML.*/
-const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 
-			'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb',
-			'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 
-			'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
+const cards = ['fa-warning', 'fa-wifi', 'fa-power-off', 'fa-floppy-o', 
+			'fa-plug', 'fa-mouse-pointer', 'fa-picture-o', 'fa-code',
+			'fa-warning', 'fa-wifi', 'fa-power-off', 'fa-floppy-o', 
+			'fa-plug', 'fa-mouse-pointer', 'fa-picture-o', 'fa-code'];
 
 /* Shuffle function from http://stackoverflow.com/a/2450976
 Takes cards array and shuffles up their order.*/
