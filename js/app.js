@@ -10,12 +10,16 @@ let moves = 0;
 const moveCounter = document.querySelector('.moves');
 let matchCount = 0;
 
+// declare variables for star icons
+const starIcons = document.querySelectorAll(".fa-star");
+
 // Get the modal
 var modal = document.getElementById('winnerModal');
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
+
 
 /*Cards array: Holds all the card element classes,
 which are used as variables when programatically generating card deck HTML.*/
@@ -60,6 +64,7 @@ function initializeGame() {
 	deck.innerHTML = cardHTML.join('');
 	allCards = document.querySelectorAll('.card');
 	addListenersToCards();
+	checkStarRating();
 }
 
 
@@ -109,6 +114,8 @@ function checkOpenCards() {
 	noMatch();
 	//Increment moves:
 	incrementMove();
+	//Check Star Rating:
+	checkStarRating();
 	//Check if all cards are matched:
 	checkWinner();
   }
@@ -139,6 +146,17 @@ function noMatch() {
 function incrementMove() {
 	moves += 1;
 	moveCounter.innerText = moves;
+}
+
+function checkStarRating() {
+	if (moves > 21) {
+		starIcons[0].style.display = "none";
+	} else if (moves > 11) {
+		starIcons[1].style.display = "none";
+	} else {
+		starIcons[0].style.display = "inline-block";
+		starIcons[1].style.display = "inline-block";
+	}
 }
 
 function checkWinner() {
