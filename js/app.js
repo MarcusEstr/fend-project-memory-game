@@ -211,6 +211,7 @@ git push -u origin master*/
 
 // When the user clicks on the button, open the modal.
 btn.onclick = function() {
+	stopTimer();
     modal.style.display = "block";
     document.getElementById('finalMove').innerHTML = moves;
     document.getElementById('finalTime').innerHTML = `${timerMinutes.innerText} minutes and ${timerSeconds.innerText} seconds`;
