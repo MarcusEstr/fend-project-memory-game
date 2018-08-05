@@ -14,6 +14,9 @@ let matchCount = 0;
 const starIcons = document.querySelectorAll(".fa-star");
 let starCount = 3;
 
+let timerSeconds = document.getElementById("seconds");
+let timerMinutes = document.getElementById("minutes");
+
 // Get the modal
 const modal = document.getElementById('winnerModal');
 // Get the button that opens the modal
@@ -58,14 +61,21 @@ function initializeGame() {
 		return generateCard(card);
 	});
 	//Start/reset moves to 0.
-	moves = 0;
-	moveCounter.innerText = moves;
-	matchCount = 0;
+	defaultToZero();
 	//Newly shuffled/created string of cardHTML passed to deck div for displaying.
 	deck.innerHTML = cardHTML.join('');
 	allCards = document.querySelectorAll('.card');
 	addListenersToCards();
 	checkStarRating();
+	startTimer();
+}
+
+function defaultToZero() {
+	moves = 0;
+	moveCounter.innerText = moves;
+	matchCount = 0;
+	timerSeconds.innerText = 0;
+	timerMinutes.innerText = 0;
 }
 
 
@@ -165,22 +175,32 @@ function checkStarRating() {
 
 function checkWinner() {
 	if (matchCount === 16) {
+		stopTimer();
 		modal.style.display = "block";
 		document.getElementById('finalMove').innerHTML = moves;
-		document.getElementById('finalTime').innerHTML = moves;
+		document.getElementById('finalTime').innerHTML = `Hello ${timerSeconds}`;
 		document.getElementById('finalStar').innerHTML = starCount;
 	}
 }
 
+function startTimer() {
+    var seconds = 0;
+	timer = setInterval(function() {
+    	seconds ++;
+		timerSeconds.innerText = seconds % 60;
+		timerMinutes.innerText = parseInt(seconds / 60);
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timer);
+}
 /*Git uploads:
 git status
 git add .
 git status
 git commit -m "Enter text here"
 git push -u origin master*/
-
-// // Get the modal
-// //var modal = document.getElementById('winnerModal');
 
 // // Get the button that opens the modal
 // var btn = document.getElementById("myBtn");
@@ -192,7 +212,7 @@ git push -u origin master*/
 btn.onclick = function() {
     modal.style.display = "block";
     document.getElementById('finalMove').innerHTML = moves;
-    document.getElementById('finalTime').innerHTML = moves;
+    document.getElementById('finalTime').innerHTML = `${timerMinutes.innerText} minutes and ${timerSeconds.innerText} seconds`;
 	document.getElementById('finalStar').innerHTML = starCount;
 }
 
