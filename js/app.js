@@ -23,6 +23,7 @@ const modal = document.getElementById('winnerModal');
 const btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
+const playAgain = document.getElementById("playAgain");
 
 
 /*Cards array: Holds all the card element classes,
@@ -178,7 +179,7 @@ function checkWinner() {
 		stopTimer();
 		modal.style.display = "block";
 		document.getElementById('finalMove').innerHTML = moves;
-		document.getElementById('finalTime').innerHTML = `Hello ${timerSeconds}`;
+		document.getElementById('finalTime').innerHTML = `${timerMinutes.innerText} minutes and ${timerSeconds.innerText} seconds`;
 		document.getElementById('finalStar').innerHTML = starCount;
 	}
 }
@@ -226,4 +227,10 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+
+playAgain.onclick = function() {
+	modal.style.display = "none";
+	stopTimer();
+	initializeGame();
 }
