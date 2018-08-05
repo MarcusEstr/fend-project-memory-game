@@ -140,14 +140,17 @@ function match() {
 		openCards[0].classList.add('match');
 		openCards[1].classList.add('match');
 		matchCount += 2;
-		openCards = []; //clear array
+		setTimeout(function() {
+			openCards = []; //clear array only after match animation completes
+		}, 600);
 	} else {
 		openCards[0].classList.add('noMatch');
 		openCards[1].classList.add('noMatch');
 	}
+// }, 700);
 }
 
-/*When cards don't match, when timer reaches 800ms,
+/*When cards don't match, when timer reaches 600ms,
 remove open/show classes and empty openCards array.*/
 function noMatch() {
 	setTimeout(function() {
@@ -156,7 +159,7 @@ function noMatch() {
 		card.classList.remove('open', 'show', 'noMatch');
 		});
 		openCards = []; //clear array
-	}, 700);
+	}, 600);
 
 }
 
