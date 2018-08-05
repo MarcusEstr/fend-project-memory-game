@@ -141,14 +141,15 @@ function match() {
 		openCards[1].classList.add('match');
 		matchCount += 2;
 		openCards = []; //clear array
+	} else {
+		openCards[0].classList.add('noMatch');
+		openCards[1].classList.add('noMatch');
 	}
 }
 
 /*When cards don't match, when timer reaches 800ms,
 remove open/show classes and empty openCards array.*/
 function noMatch() {
-	 openCards[0].classList.add('noMatch');
-	 openCards[1].classList.add('noMatch');
 	setTimeout(function() {
 		openCards.forEach(function(card) {
 
