@@ -184,6 +184,7 @@ function checkWinner() {
 	}
 }
 
+// setInterval basics: http://logicalmoon.com/2015/05/using-javascript-to-create-a-timer/
 function startTimer() {
     var seconds = 0;
 	timer = setInterval(function() {
